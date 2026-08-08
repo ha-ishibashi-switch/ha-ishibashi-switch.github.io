@@ -15,16 +15,18 @@ import {
 
 function Survey202608() {
   const availableDates = [
-    "9/6(土)",
-    "9/7(日)",
-    "9/13(土)",
-    "9/14(日)",
-    "9/15(月・祝)",
-    "9/20(土)",
-    "9/21(日)",
+    "9/5(土)",
+    "9/6(日)",
+    "9/12(土)",
+    "9/13(日)",
+    "9/14(月・祝)",
+    "9/19(土)",
+    "9/20(日)",
+    "9/21(月・祝)",
+    "9/22(火・祝)",
     "9/23(水・祝)",
-    "9/27(土)",
-    "9/28(日)",
+    "9/26(土)",
+    "9/27(日)",
   ];
 
   const [name, setName] = useState("");
@@ -33,40 +35,49 @@ function Survey202608() {
   const [startTime, setStartTime] = useState("13:30");
   const [area, setArea] = useState("");
   const [machine, setMachine] = useState("どちらでもOK");
-  const [budget, setBudget] = useState("特に気にしない");
   const [otherRequests, setOtherRequests] = useState("");
 
-  const handleNameChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleNameChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setName(event.target.value);
   };
 
-  const handleParticipationChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleParticipationChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setParticipation(event.target.value);
   };
 
-  const handleStartTimeChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleStartTimeChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setStartTime(event.target.value);
   };
 
-  const handleAreaChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleAreaChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setArea(event.target.value);
   };
 
-  const handleMachineChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleMachineChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setMachine(event.target.value);
   };
 
-  const handleBudgetChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setBudget(event.target.value);
-  };
-
-  const handleOtherRequestsChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleOtherRequestsChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setOtherRequests(event.target.value);
   };
 
   const handleDateToggle = (date: string) => {
     setSelectedDates((prev) =>
-      prev.includes(date) ? prev.filter((item) => item !== date) : [...prev, date]
+      prev.includes(date)
+        ? prev.filter((item) => item !== date)
+        : [...prev, date],
     );
   };
 
@@ -74,7 +85,8 @@ function Survey202608() {
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #020617 0%, #4c1d95 45%, #020617 100%)",
+        background:
+          "linear-gradient(135deg, #020617 0%, #4c1d95 45%, #020617 100%)",
         py: 4,
         px: 2,
       }}
@@ -139,7 +151,7 @@ function Survey202608() {
                 borderRadius: 2,
               }}
             >
-              ⚠️ 回答締切：8/21
+              ⚠️ 回答締切：8/26
             </Box>
 
             <Stack spacing={2.5}>
@@ -151,14 +163,17 @@ function Survey202608() {
                   background: "rgba(15, 23, 42, 0.95)",
                 }}
               >
-                <Typography variant="subtitle1" sx={{ color: "#f9a8d4", fontWeight: 700, mb: 1.5 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "#f9a8d4", fontWeight: 700, mb: 1.5 }}
+                >
                   1. お名前
                 </Typography>
                 <TextField
                   fullWidth
                   value={name}
                   onChange={handleNameChange}
-                  placeholder="例：〇〇さん"
+                  placeholder=""
                   variant="outlined"
                   sx={{
                     "& .MuiOutlinedInput-root": {
@@ -187,7 +202,10 @@ function Survey202608() {
                   background: "rgba(15, 23, 42, 0.95)",
                 }}
               >
-                <Typography variant="subtitle1" sx={{ color: "#a5f3fc", fontWeight: 700, mb: 1.5 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "#a5f3fc", fontWeight: 700, mb: 1.5 }}
+                >
                   2. 参加希望
                 </Typography>
                 <TextField
@@ -214,7 +232,9 @@ function Survey202608() {
                   }}
                 >
                   <MenuItem value="参加したい">参加したい</MenuItem>
-                  <MenuItem value="できれば参加したい">できれば参加したい</MenuItem>
+                  <MenuItem value="できれば参加したい">
+                    できれば参加したい
+                  </MenuItem>
                   <MenuItem value="今回は不参加">今回は不参加</MenuItem>
                 </TextField>
               </Box>
@@ -227,7 +247,10 @@ function Survey202608() {
                   background: "rgba(15, 23, 42, 0.95)",
                 }}
               >
-                <Typography variant="subtitle1" sx={{ color: "#e9d5ff", fontWeight: 700, mb: 1.5 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "#e9d5ff", fontWeight: 700, mb: 1.5 }}
+                >
                   3. 参加可能日（土日祝・複数選択可）
                 </Typography>
                 <Grid container spacing={1.5}>
@@ -243,8 +266,12 @@ function Survey202608() {
                             p: 1.25,
                             borderRadius: 2,
                             backgroundColor: "rgba(30, 41, 59, 0.9)",
-                            border: checked ? "1px solid #67e8f9" : "1px solid rgba(255,255,255,0.15)",
-                            boxShadow: checked ? "0 0 10px rgba(103, 232, 249, 0.25)" : "none",
+                            border: checked
+                              ? "1px solid #67e8f9"
+                              : "1px solid rgba(255,255,255,0.15)",
+                            boxShadow: checked
+                              ? "0 0 10px rgba(103, 232, 249, 0.25)"
+                              : "none",
                           }}
                         >
                           <Checkbox
@@ -275,7 +302,10 @@ function Survey202608() {
                   background: "rgba(15, 23, 42, 0.95)",
                 }}
               >
-                <Typography variant="subtitle1" sx={{ color: "#f9a8d4", fontWeight: 700, mb: 1.5 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "#f9a8d4", fontWeight: 700, mb: 1.5 }}
+                >
                   4. 希望開始時間
                 </Typography>
                 <TextField
@@ -317,7 +347,10 @@ function Survey202608() {
                   background: "rgba(15, 23, 42, 0.95)",
                 }}
               >
-                <Typography variant="subtitle1" sx={{ color: "#a5f3fc", fontWeight: 700, mb: 1.5 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "#a5f3fc", fontWeight: 700, mb: 1.5 }}
+                >
                   5. 希望エリア
                 </Typography>
                 <TextField
@@ -353,7 +386,10 @@ function Survey202608() {
                   background: "rgba(15, 23, 42, 0.95)",
                 }}
               >
-                <Typography variant="subtitle1" sx={{ color: "#e9d5ff", fontWeight: 700, mb: 1.5 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "#e9d5ff", fontWeight: 700, mb: 1.5 }}
+                >
                   6. 希望機種
                 </Typography>
                 <TextField
@@ -387,55 +423,17 @@ function Survey202608() {
 
               <Box
                 sx={{
-                  border: "1px solid #f472b6",
-                  borderRadius: 3,
-                  p: 3,
-                  background: "rgba(15, 23, 42, 0.95)",
-                }}
-              >
-                <Typography variant="subtitle1" sx={{ color: "#f9a8d4", fontWeight: 700, mb: 1.5 }}>
-                  7. 予算感
-                </Typography>
-                <TextField
-                  select
-                  fullWidth
-                  value={budget}
-                  onChange={handleBudgetChange}
-                  variant="outlined"
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      backgroundColor: "rgba(30, 41, 59, 0.9)",
-                      color: "white",
-                      borderRadius: 2,
-                      "& fieldset": {
-                        borderColor: "#f472b6",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "#fb7185",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "#67e8f9",
-                      },
-                    },
-                  }}
-                >
-                  <MenuItem value="2,000円以内">2,000円以内</MenuItem>
-                  <MenuItem value="3,000円以内">3,000円以内</MenuItem>
-                  <MenuItem value="4,000円以内">4,000円以内</MenuItem>
-                  <MenuItem value="特に気にしない">特に気にしない</MenuItem>
-                </TextField>
-              </Box>
-
-              <Box
-                sx={{
                   border: "1px solid #94a3b8",
                   borderRadius: 3,
                   p: 3,
                   background: "rgba(15, 23, 42, 0.95)",
                 }}
               >
-                <Typography variant="subtitle1" sx={{ color: "#e2e8f0", fontWeight: 700, mb: 1.5 }}>
-                  8. その他要望
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "#e2e8f0", fontWeight: 700, mb: 1.5 }}
+                >
+                  7. その他要望
                 </Typography>
                 <TextField
                   fullWidth
@@ -474,7 +472,8 @@ function Survey202608() {
                 fontSize: "1.1rem",
                 fontWeight: 700,
                 color: "white",
-                background: "linear-gradient(90deg, #ec4899 0%, #8b5cf6 50%, #22d3ee 100%)",
+                background:
+                  "linear-gradient(90deg, #ec4899 0%, #8b5cf6 50%, #22d3ee 100%)",
                 boxShadow: "0 0 18px rgba(236, 72, 153, 0.35)",
                 textTransform: "none",
               }}
@@ -483,7 +482,12 @@ function Survey202608() {
             </Button>
 
             <Box textAlign="center">
-              <Button component={Link} to="/" variant="outlined" sx={{ color: "#67e8f9", borderColor: "#67e8f9" }}>
+              <Button
+                component={Link}
+                to="/"
+                variant="outlined"
+                sx={{ color: "#67e8f9", borderColor: "#67e8f9" }}
+              >
                 ホームへ戻る
               </Button>
             </Box>
