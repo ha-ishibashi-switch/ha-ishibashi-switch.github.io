@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
-      <h1>ホーム</h1>
+      <h1>アンケート一覧</h1>
 
-      <Link to="/survey">アンケートへ</Link>
+      <ul>
+        <li>
+          <Link to="/survey/202608">2026年8月アンケート</Link>
+        </li>
+      </ul>
     </div>
   );
 }
