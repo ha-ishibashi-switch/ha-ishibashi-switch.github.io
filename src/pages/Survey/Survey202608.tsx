@@ -35,6 +35,11 @@ function Survey202608() {
   const [area, setArea] = useState("");
   const [machine, setMachine] = useState("どちらでもOK");
   const [otherRequests, setOtherRequests] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const handleNameChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -78,6 +83,54 @@ function Survey202608() {
         ? prev.filter((item) => item !== date)
         : [...prev, date],
     );
+  };
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setSubmitMessage("");
+    setSubmitStatus("idle");
+
+    const payload = {
+      name,
+      participation,
+      availableDates: selectedDates.join(", "),
+      startTime,
+      area,
+      machine,
+      otherRequests,
+    };
+
+    try {
+      const response = await fetch(
+        "https://default454d08fb0c314fc79e91efc4d8dce4.b8.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/28/workflows/e9e419d08ff24d2f9dfdfddec32addd9/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_YYpw1tCvhMCt5sm51kT3WcGqfpFS8GR_NF5pHXyP9g",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          errorText || `送信に失敗しました（HTTP ${response.status}）`,
+        );
+      }
+
+      setSubmitStatus("success");
+      setSubmitMessage("送信しました。ご協力ありがとうございます。");
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        error instanceof Error
+          ? `${error.message}\n通信状況を確認して、もう一度お試しください。`
+          : "送信中にエラーが発生しました。通信状況を確認して、もう一度お試しください。",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -554,6 +607,8 @@ function Survey202608() {
             <Button
               type="button"
               fullWidth
+              onClick={handleSubmit}
+              disabled={isSubmitting}
               sx={{
                 py: 1.5,
                 borderRadius: 3,
@@ -564,10 +619,69 @@ function Survey202608() {
                   "linear-gradient(90deg, #ec4899 0%, #8b5cf6 50%, #22d3ee 100%)",
                 boxShadow: "0 0 18px rgba(236, 72, 153, 0.35)",
                 textTransform: "none",
+                opacity: isSubmitting ? 0.7 : 1,
               }}
             >
-              🎤 LET'S SING !!　（送信）
+              {isSubmitting ? "送信中..." : "🎤 LET'S SING !!　（送信）"}
             </Button>
+
+            {submitStatus === "error" && (
+              <Button
+                type="button"
+                fullWidth
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                sx={{
+                  py: 1.2,
+                  borderRadius: 3,
+                  fontSize: "1rem",
+                  fontWeight: 700,
+                  color: "#fff1f2",
+                  background:
+                    "linear-gradient(90deg, #f43f5e 0%, #fb923c 100%)",
+                  textTransform: "none",
+                  opacity: isSubmitting ? 0.7 : 1,
+                }}
+              >
+                {isSubmitting ? "再送信中..." : "🔁 もう一度送信する"}
+              </Button>
+            )}
+
+            {submitMessage && (
+              <Box
+                sx={{
+                  borderRadius: 2,
+                  border:
+                    submitStatus === "error"
+                      ? "1px solid #fb7185"
+                      : "1px solid #86efac",
+                  background:
+                    submitStatus === "error"
+                      ? "rgba(127, 29, 29, 0.8)"
+                      : "rgba(20, 83, 45, 0.8)",
+                  color: submitStatus === "error" ? "#fecdd3" : "#dcfce7",
+                  textAlign: "center",
+                  px: 2,
+                  py: 1.5,
+                  boxShadow:
+                    submitStatus === "error"
+                      ? "0 0 12px rgba(251, 113, 133, 0.25)"
+                      : "0 0 12px rgba(134, 239, 172, 0.2)",
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  sx={{ fontWeight: 700, mb: 0.5 }}
+                >
+                  {submitStatus === "error"
+                    ? "⚠️ 送信に失敗しました"
+                    : "✅ 送信完了"}
+                </Typography>
+                <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+                  {submitMessage}
+                </Typography>
+              </Box>
+            )}
           </Stack>
         </Paper>
       </Container>
