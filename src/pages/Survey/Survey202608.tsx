@@ -154,40 +154,55 @@ function Survey202608() {
                   animation: "pulseGlow 1.6s ease-in-out infinite",
                 }}
               ></Box>
-              <Typography
-                variant="h2"
-                component="h1"
+              <Box
                 sx={{
-                  fontWeight: 800,
-                  color: "#f472b6",
-                  textShadow:
-                    "0 0 8px #ff4fd8, 0 0 20px #ff4fd8, 0 0 40px #ff4fd8",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                  gap: { xs: 0.75, sm: 1.25 },
                   mb: 1,
-                  animation: "pulseGlow 1.6s ease-in-out infinite",
                 }}
               >
                 <Box
                   component="span"
                   sx={{
-                    fontSize: "3.2rem",
-                    mr: 1,
+                    fontSize: { xs: "1.6rem", sm: "2.4rem", md: "3.2rem" },
+                    lineHeight: 1,
                     filter: "drop-shadow(0 0 8px #67e8f9)",
+                    animation: "pulseGlow 1.6s ease-in-out infinite",
                   }}
                 >
                   🎤
                 </Box>
-                KARAOKE CLUB
+                <Typography
+                  variant="h2"
+                  component="h1"
+                  sx={{
+                    fontWeight: 800,
+                    color: "#f472b6",
+                    textShadow:
+                      "0 0 8px #ff4fd8, 0 0 20px #ff4fd8, 0 0 40px #ff4fd8",
+                    animation: "pulseGlow 1.6s ease-in-out infinite",
+                    fontSize: { xs: "1.45rem", sm: "2.2rem", md: "3.25rem" },
+                    lineHeight: 1.1,
+                    wordBreak: "break-word",
+                  }}
+                >
+                  KARAOKE CLUB
+                </Typography>
                 <Box
                   component="span"
                   sx={{
-                    fontSize: "3.2rem",
-                    mr: 1,
+                    fontSize: { xs: "1.6rem", sm: "2.4rem", md: "3.2rem" },
+                    lineHeight: 1,
                     filter: "drop-shadow(0 0 8px #67e8f9)",
+                    animation: "pulseGlow 1.6s ease-in-out infinite",
                   }}
                 >
                   🎤
                 </Box>
-              </Typography>
+              </Box>
 
               <Typography
                 variant="h4"
@@ -199,6 +214,9 @@ function Survey202608() {
                     "0 0 8px #67e8f9, 0 0 20px #67e8f9, 0 0 40px #67e8f9",
                   mb: 2,
                   animation: "pulseGlow 1.6s ease-in-out infinite",
+                  fontSize: { xs: "1rem", sm: "1.35rem", md: "1.75rem" },
+                  lineHeight: 1.2,
+                  px: { xs: 1, sm: 0 },
                 }}
               >
                 9月開催アンケート
@@ -548,7 +566,7 @@ function Survey202608() {
                 textTransform: "none",
               }}
             >
-              🎤 LET'S SING !!
+              🎤 LET'S SING !!　（送信）
             </Button>
           </Stack>
         </Paper>
