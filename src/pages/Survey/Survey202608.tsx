@@ -89,6 +89,30 @@ function Survey202608() {
           "linear-gradient(135deg, #020617 0%, #4c1d95 45%, #020617 100%)",
         py: 4,
         px: 2,
+        position: "relative",
+        overflow: "hidden",
+        "@keyframes floatNote": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(0deg)",
+            opacity: 0.7,
+          },
+          "50%": {
+            transform: "translate3d(0, -18px, 0) rotate(8deg)",
+            opacity: 1,
+          },
+        },
+        "@keyframes pulseGlow": {
+          "0%, 100%": {
+            textShadow: "0 0 8px #ff4fd8, 0 0 20px #ff4fd8, 0 0 40px #ff4fd8",
+          },
+          "50%": {
+            textShadow: "0 0 12px #67e8f9, 0 0 24px #67e8f9, 0 0 48px #67e8f9",
+          },
+        },
+        "@keyframes spin": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       }}
     >
       <Container maxWidth="md">
@@ -106,7 +130,38 @@ function Survey202608() {
           }}
         >
           <Stack spacing={3}>
-            <Box textAlign="center">
+            <Box textAlign="center" position="relative">
+              <Box
+                sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: 1,
+                  animation: "pulseGlow 1.6s ease-in-out infinite",
+                }}
+              >
+                <Box
+                  component="span"
+                  sx={{
+                    fontSize: "3.2rem",
+                    mr: 1,
+                    filter: "drop-shadow(0 0 8px #67e8f9)",
+                  }}
+                >
+                  🎤
+                </Box>
+                <Box
+                  sx={{
+                    width: 46,
+                    height: 46,
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, #fff, #67e8f9)",
+                    boxShadow: "0 0 12px rgba(103,232,249,0.9)",
+                    display: "inline-block",
+                    transform: "rotate(-8deg)",
+                  }}
+                />
+              </Box>
               <Typography
                 variant="h2"
                 component="h1"
@@ -116,6 +171,7 @@ function Survey202608() {
                   textShadow:
                     "0 0 8px #ff4fd8, 0 0 20px #ff4fd8, 0 0 40px #ff4fd8",
                   mb: 1,
+                  animation: "pulseGlow 1.6s ease-in-out infinite",
                 }}
               >
                 KARAOKE CLUB
@@ -130,6 +186,7 @@ function Survey202608() {
                   textShadow:
                     "0 0 8px #67e8f9, 0 0 20px #67e8f9, 0 0 40px #67e8f9",
                   mb: 2,
+                  animation: "pulseGlow 1.6s ease-in-out infinite",
                 }}
               >
                 9月開催アンケート
@@ -149,6 +206,7 @@ function Survey202608() {
                 textAlign: "center",
                 fontWeight: 700,
                 borderRadius: 2,
+                animation: "pulseGlow 1.4s ease-in-out infinite",
               }}
             >
               ⚠️ 回答締切：8/26
@@ -494,6 +552,53 @@ function Survey202608() {
           </Stack>
         </Paper>
       </Container>
+
+      <Box
+        sx={{
+          position: "absolute",
+          right: { xs: 12, md: 40 },
+          bottom: { xs: 24, md: 32 },
+          width: { xs: 88, md: 120 },
+          height: { xs: 88, md: 120 },
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle at 30% 30%, #ffffff 0%, #67e8f9 25%, #4338ca 55%, transparent 70%)",
+          boxShadow: "0 0 32px rgba(103,232,249,0.45)",
+          animation: "spin 8s linear infinite",
+          zIndex: 0,
+          opacity: 0.95,
+        }}
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          right: { xs: 18, md: 50 },
+          bottom: { xs: 28, md: 42 },
+          width: { xs: 78, md: 108 },
+          height: { xs: 78, md: 108 },
+          borderRadius: "50%",
+          border: "8px solid rgba(255,255,255,0.25)",
+          borderTopColor: "#f472b6",
+          borderRightColor: "#67e8f9",
+          borderBottomColor: "#facc15",
+          animation: "spin 5s linear infinite reverse",
+          zIndex: 0,
+        }}
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          left: { xs: 16, md: 24 },
+          bottom: { xs: 20, md: 28 },
+          width: { xs: 92, md: 120 },
+          height: { xs: 92, md: 120 },
+          borderRadius: "50%",
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08))",
+          boxShadow: "inset 0 0 16px rgba(255,255,255,0.2)",
+          zIndex: 0,
+        }}
+      />
     </Box>
   );
 }
