@@ -1,5 +1,4 @@
 import { useState, type ChangeEvent } from "react";
-import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -85,12 +84,14 @@ function Survey202608() {
     <Box
       sx={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(135deg, #020617 0%, #4c1d95 45%, #020617 100%)",
         py: 4,
         px: 2,
         position: "relative",
         overflow: "hidden",
+        backgroundImage: `linear-gradient(135deg, rgba(2, 6, 23, 0.96) 0%, rgba(76, 29, 149, 0.88) 48%, rgba(2, 6, 23, 0.96) 100%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%23020717'/%3E%3Crect y='620' width='1600' height='280' fill='%23110f2f'/%3E%3Cpath d='M0 700 C260 600 500 620 780 690 C1030 750 1300 780 1600 690 L1600 900 L0 900 Z' fill='%230f0d2e'/%3E%3Ccircle cx='280' cy='300' r='220' fill='%23ff4fd8' fill-opacity='0.24'/%3E%3Ccircle cx='900' cy='240' r='260' fill='%2367e8f9' fill-opacity='0.18'/%3E%3Ccircle cx='1210' cy='330' r='180' fill='%23facc15' fill-opacity='0.16'/%3E%3Cpath d='M0 340 L260 220 L400 240 L680 140 L920 230 L1240 150 L1600 260 L1600 420 L1320 360 L1060 420 L820 320 L560 420 L300 360 L0 440 Z' fill='%233f2d88' fill-opacity='0.45'/%3E%3Cpath d='M0 720 L80 670 L170 690 L250 650 L340 670 L430 630 L520 660 L620 620 L720 650 L830 610 L930 640 L1030 600 L1120 640 L1220 600 L1320 630 L1420 590 L1520 620 L1600 590 L1600 900 L0 900 Z' fill='%23121c3b' fill-opacity='0.85'/%3E%3Cg fill='%23000000' fill-opacity='0.5'%3E%3Crect x='80' y='720' width='26' height='86'/%3E%3Crect x='128' y='700' width='22' height='106'/%3E%3Crect x='170' y='730' width='24' height='76'/%3E%3Crect x='220' y='710' width='22' height='96'/%3E%3Crect x='260' y='735' width='24' height='71'/%3E%3Crect x='1320' y='732' width='24' height='78'/%3E%3Crect x='1368' y='710' width='22' height='100'/%3E%3Crect x='1410' y='730' width='24' height='80'/%3E%3Crect x='1460' y='700' width='20' height='110'/%3E%3Crect x='1490' y='738' width='22' height='72'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
         "@keyframes floatNote": {
           "0%, 100%": {
             transform: "translate3d(0, 0, 0) rotate(0deg)",
@@ -133,6 +134,19 @@ function Survey202608() {
             <Box textAlign="center" position="relative">
               <Box
                 sx={{
+                  position: "absolute",
+                  inset: "-18px auto auto 50%",
+                  width: 260,
+                  height: 90,
+                  transform: "translateX(-50%)",
+                  background:
+                    "radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%)",
+                  filter: "blur(10px)",
+                  zIndex: 0,
+                }}
+              />
+              <Box
+                sx={{
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -152,6 +166,16 @@ function Survey202608() {
                   animation: "pulseGlow 1.6s ease-in-out infinite",
                 }}
               >
+                <Box
+                  component="span"
+                  sx={{
+                    fontSize: "3.2rem",
+                    mr: 1,
+                    filter: "drop-shadow(0 0 8px #67e8f9)",
+                  }}
+                >
+                  🎤
+                </Box>
                 KARAOKE CLUB
                 <Box
                   component="span"
@@ -526,17 +550,6 @@ function Survey202608() {
             >
               🎤 LET'S SING !!
             </Button>
-
-            <Box textAlign="center">
-              <Button
-                component={Link}
-                to="/"
-                variant="outlined"
-                sx={{ color: "#67e8f9", borderColor: "#67e8f9" }}
-              >
-                ホームへ戻る
-              </Button>
-            </Box>
           </Stack>
         </Paper>
       </Container>
