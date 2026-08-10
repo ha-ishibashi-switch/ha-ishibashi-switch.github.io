@@ -472,10 +472,9 @@ function Survey202608() {
                     },
                   }}
                 >
-                  <MenuItem value="13:30">13:30</MenuItem>
-                  <MenuItem value="14:00">14:00</MenuItem>
-                  <MenuItem value="14:30">14:30</MenuItem>
-                  <MenuItem value="15:00">15:00</MenuItem>
+                  <MenuItem value="13:00">13:00頃</MenuItem>
+                  <MenuItem value="14:00">14:00頃</MenuItem>
+                  <MenuItem value="15:00">15:00頃</MenuItem>
                   <MenuItem value="希望なし">希望なし</MenuItem>
                 </TextField>
               </Box>
