@@ -90,10 +90,22 @@ function Survey202608() {
     setSubmitMessage("");
     setSubmitStatus("idle");
 
+    const sortedDates = [...selectedDates].sort((a, b) => {
+      const parseDate = (value: string) => {
+        const match = value.match(/^(\d{1,2})\/(\d{1,2})/);
+        if (!match) {
+          return Number.MAX_SAFE_INTEGER;
+        }
+        return Number(match[1]) * 100 + Number(match[2]);
+      };
+
+      return parseDate(a) - parseDate(b);
+    });
+
     const payload = {
       name,
       participation,
-      availableDates: selectedDates.join(", "),
+      availableDates: sortedDates.join(", "),
       startTime,
       area,
       machine,
@@ -237,7 +249,7 @@ function Survey202608() {
                     textShadow:
                       "0 0 8px #ff4fd8, 0 0 20px #ff4fd8, 0 0 40px #ff4fd8",
                     animation: "pulseGlow 1.6s ease-in-out infinite",
-                    fontSize: { xs: "1.45rem", sm: "2.2rem", md: "3.25rem" },
+                    fontSize: { xs: "1.2rem", sm: "2.2rem", md: "3.25rem" },
                     lineHeight: 1.1,
                     wordBreak: "break-word",
                   }}
